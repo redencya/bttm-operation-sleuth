@@ -1,5 +1,5 @@
 tool
-extends Area2D
+extends PerspectiveSprite
 class_name InteractiveItem
 
 enum CursorMode { REGULAR, EXAMINE, CAPTCHA, WALK, ENTER }
@@ -14,9 +14,13 @@ var action_index = 0
 func _process(delta: float) -> void:
 	if Engine.editor_hint:
 		descriptions.resize(GameManager.events.size())
-
+		$Collider/CollisionShape2D.get_shape().set_height(get_rect().size.y/2)
+		$Collider/CollisionShape2D.get_shape().set_radius(get_rect().size.x/2)
+		
 func _ready() -> void:
-	connect("input_event", self, "_on_Area2D_input_event")
+	$Collider/CollisionShape2D.connect("input_event", self, "_on_Area2D_input_event")
+	$Collider/CollisionShape2D.connect("mouse_entered", self, "_on_Area2D_mouse_entered")
+	$Collider/CollisionShape2D.connect("mouse_exited", self, "_on_Area2D_mouse_exited")
 
 func _on_Area2D_mouse_entered() -> void:
 	MouseManager.set_cursor(hover_actions[action_index])

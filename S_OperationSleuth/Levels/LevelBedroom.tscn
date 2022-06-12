@@ -1,16 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://LevelBedroom.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player/help.PNG" type="Texture" id=3]
 [ext_resource path="res://Temp/FranSprite.png" type="Texture" id=4]
 [ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=5]
-[ext_resource path="res://Objects/InteractiveItem.gd" type="Script" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 64, -64, 176, -48, 120, -32, -40, 168, -288, 0, -184, -16, -16, 32, 136, 88, -16, 168, -16, 16, -8, -48, -120, -32 )
-polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 4, 5 ), PoolIntArray( 6, 7, 8, 3 ), PoolIntArray( 0, 2, 9, 10 ), PoolIntArray( 9, 3, 5, 11, 10 ), PoolIntArray( 3, 9, 6 ) ]
-outlines = [ PoolVector2Array( -40, 168, -16, 168, 136, 88, -16, 32, -16, 16, 120, -32, 176, -48, 64, -64, -8, -48, -120, -32, -184, -16, -288, 0 ) ]
+vertices = PoolVector2Array( 63, -61, 170, -46, 120, -32, -16, 16, -8, -48, -92, 38, -16, 32, 136, 88, -16, 168, -40, 168, -174, 77, -113, -29, -92, 19 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 0, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8, 9, 10 ), PoolIntArray( 11, 4, 3, 12 ), PoolIntArray( 12, 3, 6, 5 ) ]
+outlines = [ PoolVector2Array( -40, 168, -16, 168, 136, 88, -16, 32, -16, 16, 120, -32, 170, -46, 63, -61, -8, -48, -113, -29, -92, 19, -92, 38, -174, 77 ) ]
 
 [node name="Node2D" type="Node2D"]
 
@@ -24,6 +23,7 @@ position = Vector2( 325, 220 )
 texture = ExtResource( 1 )
 
 [node name="Perspective2D" type="Node2D" parent="."]
+visible = false
 modulate = Color( 1, 1, 1, 0.478431 )
 script = ExtResource( 5 )
 rotation_offset = 15.0
@@ -68,40 +68,10 @@ position = Vector2( 270, 229 )
 scale = Vector2( -1, 1 )
 texture = ExtResource( 4 )
 
-[node name="Walkway" type="Area2D" parent="."]
-scale = Vector2( 0.99797, 0.982142 )
-collision_layer = 2
-collision_mask = 2
-monitorable = false
-priority = 1.0
-script = ExtResource( 6 )
-hover_actions = [ 3 ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walkway"]
-polygon = PoolVector2Array( 89.181, 237.237, 443.901, 172.073, 548.113, 185.309, 360.732, 253.528, 361.734, 268.8, 510.035, 323.782, 360.732, 405.237, 337.686, 406.255 )
-
-[node name="Walkway2" type="Area2D" parent="."]
-scale = Vector2( 0.99797, 0.982142 )
-collision_layer = 2
-collision_mask = 2
-monitorable = false
-priority = 1.0
-script = ExtResource( 6 )
-hover_text = "hall"
-hover_actions = [ 4 ]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walkway2"]
-polygon = PoolVector2Array( 348.708, 189.382, 346.704, 38.6909, 407.828, 46.8364, 407.828, 174.109 )
-
 [node name="Sprite" parent="." instance=ExtResource( 2 )]
-position = Vector2( 407, 200 )
-scale = Vector2( 0.461192, 0.461192 )
+position = Vector2( 330, 242 )
+scale = Vector2( 0.640847, 0.640847 )
 offset = Vector2( -0.806793, -115.764 )
 global_scale_mod = 1
 grid = NodePath("../Perspective2D")
 nav_2d_path = NodePath("../Navigation2D")
-
-[connection signal="mouse_entered" from="Walkway" to="Walkway" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Walkway" to="Walkway" method="_on_Area2D_mouse_exited"]
-[connection signal="mouse_entered" from="Walkway2" to="Walkway2" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Walkway2" to="Walkway2" method="_on_Area2D_mouse_exited"]

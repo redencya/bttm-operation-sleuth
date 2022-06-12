@@ -258,14 +258,9 @@ text = ">  Fran: %s."
 fit_content_height = true
 
 [node name="NarrativeBox" type="PanelContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -325.0
-margin_top = 1.0
-margin_right = 325.0
-margin_bottom = 121.004
+margin_top = 455.0
+margin_right = 650.0
+margin_bottom = 575.0
 rect_min_size = Vector2( 650, 120 )
 rect_scale = Vector2( 1, 1e-05 )
 custom_styles/panel = SubResource( 4 )

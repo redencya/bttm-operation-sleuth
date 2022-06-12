@@ -3,13 +3,13 @@ extends PerspectiveSprite
 class_name Player
 
 signal navigation_finished
-export (NodePath) var nav_2d_path
 
+export (NodePath) var nav_2d_path
+export (float) var path_offset 
 
 var velocity := Vector2.ZERO
 var move_speed : float = 150.0
 var path = PoolVector2Array()
-export (float) var path_offset 
 var direction : Vector2
 var navigating := false
 

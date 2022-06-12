@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Area2D",
+"base": "PerspectiveSprite",
 "class": "InteractiveItem",
 "language": "GDScript",
 "path": "res://Objects/InteractiveItem.gd"
