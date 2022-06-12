@@ -1,0 +1,228 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/hall.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/rail.png" type="Texture" id=3]
+[ext_resource path="res://Assets/bear.png" type="Texture" id=4]
+[ext_resource path="res://Assets/cabinet.png" type="Texture" id=5]
+[ext_resource path="res://Objects/InteractiveItem.gd" type="Script" id=6]
+[ext_resource path="res://Assets/tree.png" type="Texture" id=7]
+[ext_resource path="res://Assets/columbo.png" type="Texture" id=8]
+[ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=9]
+[ext_resource path="res://core/PerspectiveSprite.gd" type="Script" id=10]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 150.959, -8.11038, 320.543, 124.697, 323.484, 190.594, 181.347, 188.566, 99.9859, 66.9105, -158.801, -6.08279, -172.525, 65.8967, -317.603, 122.669, -291.136, 188.566, -316.622, 189.58 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 0, 4, 6 ), PoolIntArray( 7, 5, 6, 8, 9 ) ]
+outlines = [ PoolVector2Array( 181.347, 188.566, 323.484, 190.594, 320.543, 124.697, 150.959, -8.11038, -158.801, -6.08279, -317.603, 122.669, -316.622, 189.58, -291.136, 188.566, -172.525, 65.8967, 99.9859, 66.9105 ) ]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( -3, -1 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 325, 117 )
+texture = ExtResource( 1 )
+offset = Vector2( 3, 109 )
+
+[node name="Perspective2D" type="Node2D" parent="."]
+position = Vector2( -1, 0 )
+scale = Vector2( 0.99797, 0.982142 )
+script = ExtResource( 9 )
+preview_cone_size = 3.5
+points = PoolVector2Array( 325, 157 )
+
+[node name="WalkingSpace" type="Navigation2D" parent="."]
+pause_mode = 2
+process_priority = 1
+
+[node name="Collider" type="NavigationPolygonInstance" parent="WalkingSpace"]
+position = Vector2( 325, 265 )
+scale = Vector2( 1.02014, 0.986392 )
+navpoly = SubResource( 1 )
+
+[node name="Interactives" type="Node2D" parent="."]
+
+[node name="Walkway" type="Area2D" parent="Interactives"]
+scale = Vector2( 0.99797, 0.982142 )
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_actions = [ 3 ]
+descriptions = [ null, null, null ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/Walkway"]
+polygon = PoolVector2Array( 161.327, 260.655, 481.978, 263.709, 653.326, 396.073, 654.328, 459.2, 512.039, 457.164, 429.873, 334.982, 148.301, 330.909, 28.057, 459.2, 1.00203, 462.255, 2.00407, 393.019 )
+
+[node name="Closet" type="Area2D" parent="Interactives"]
+scale = Vector2( 1.00408, 0.982142 )
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_text = "closet"
+hover_actions = [ 1 ]
+descriptions = [ null, null, null ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/Closet"]
+polygon = PoolVector2Array( 289, 137, 360, 137, 360, 246, 289, 246 )
+
+[node name="Bedroom" type="Area2D" parent="Interactives"]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_text = "bedroom"
+hover_actions = [ 4, 4 ]
+descriptions = [ "test
+", null, null ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/Bedroom"]
+position = Vector2( -217, 68 )
+polygon = PoolVector2Array( 288, 80, 343, 70, 342, 207, 289, 246 )
+
+[node name="TackyPoster" type="Area2D" parent="Interactives"]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_text = "tacky poster"
+hover_actions = [ 1 ]
+descriptions = [ null, null, null ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/TackyPoster"]
+position = Vector2( 124, 47 )
+polygon = PoolVector2Array( 268, 113, 295, 113, 295, 124, 306, 150, 307, 157, 311, 163, 311, 167, 269, 167 )
+
+[node name="Downstairs" type="Area2D" parent="Interactives"]
+position = Vector2( 0, -10 )
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 2.0
+script = ExtResource( 6 )
+hover_text = "Downstairs"
+hover_actions = [ 1 ]
+descriptions = [ null, null, null ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/Downstairs"]
+process_priority = 1
+position = Vector2( 103, 257 )
+polygon = PoolVector2Array( 43, 112, 310, 113, 363, 204, -44, 206 )
+
+[node name="Tree" type="Area2D" parent="Interactives"]
+process_priority = 1
+scale = Vector2( 0.99797, 0.982142 )
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_text = "tree"
+hover_actions = [ 1 ]
+descriptions = [ null, null, null ]
+
+[node name="Tree2" type="Sprite" parent="Interactives/Tree"]
+position = Vector2( 464.944, 256.582 )
+scale = Vector2( 1.04657, 1.06343 )
+texture = ExtResource( 7 )
+offset = Vector2( 0, -73.8419 )
+script = ExtResource( 10 )
+global_scale_mod = 1.8
+grid = NodePath("../../../Perspective2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/Tree"]
+position = Vector2( 464.944, 179.2 )
+scale = Vector2( 1.04657, 1.06344 )
+polygon = PoolVector2Array( 33, -79.1, 27.5, -74.3, 41, -59.8, 41, -54.7, 39.5, -49.6, 42, -42.3, 42, -40, 40.1, -40, 35.9, -33.7, 41, -24.5, 41, -20.8, 39.6, -14.3, 42, -15.1, 42, -1.8, 40.9, -0.5, 42, 2.7, 42, 11, 36, 15.9, 36, 16.5, 39, 24, 36, 24, 33, 28, 30.7, 28, 24.7, 33, 20.2, 33, 19.4, 32.2, 18, 33.1, 18, 34.5, 25, 36.5, 25, 38.4, 30, 45.4, 30, 50.7, 25, 56.7, 25, 74.5, 23.2, 78, 21.6, 78, 17.4, 81, -12.2, 81, -20, 76.1, -20, 59, -25.9, 44, -24, 44, -24, 40, -21.7, 40, -16.2, 35.1, -18.2, 31, -30, 31, -30, 28.8, -33, 25.8, -33, 18.8, -39, 14, -39, 2, -40.8, 2, -42, 0.800003, -42, -24, -41.3, -24, -36, -26.3, -36, -27.6, -32, -33.6, -32, -34.9, -37, -37.9, -37, -51, -35.2, -51, -32.2, -57, -28, -57, -28, -70, -25.1, -70, -16, -72.5, -16, -74.6, -12.1, -81, -9.3, -81, 33, -81 )
+
+[node name="Bear" type="Area2D" parent="Interactives"]
+scale = Vector2( 0.99797, 0.97387 )
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_text = "plush bear"
+hover_actions = [ 1 ]
+descriptions = [ null, null, null ]
+
+[node name="Cabinet" type="Sprite" parent="Interactives/Bear"]
+position = Vector2( 177.36, 227.055 )
+texture = ExtResource( 5 )
+
+[node name="Bear" type="Sprite" parent="Interactives/Bear/Cabinet"]
+position = Vector2( 1.00203, -55.574 )
+texture = ExtResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Interactives/Bear"]
+position = Vector2( 178.362, 171.481 )
+polygon = PoolVector2Array( 36.5, 7.6, 36.5, 14, 27.3, 14, 2.3, 45, -5.5, 45, -36.5, 32.3, -36.5, 30.1, -33.7, 16, -30.9, 16, -6.5, -37.2, -6.5, -43.9, 2.2, -46, 9.7, -46 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Columbo" type="Area2D" parent="YSort"]
+position = Vector2( 2, 0 )
+scale = Vector2( 0.99797, 0.97387 )
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+priority = 1.0
+script = ExtResource( 6 )
+hover_text = "cutout"
+hover_actions = [ 1 ]
+descriptions = [ null, null, null ]
+
+[node name="Columbo" type="Sprite" parent="YSort/Columbo"]
+position = Vector2( 595.208, 396.357 )
+scale = Vector2( 1.27396, 1.30549 )
+texture = ExtResource( 8 )
+offset = Vector2( 0.00012207, -127.11 )
+script = ExtResource( 10 )
+global_scale_mod = 1.5
+grid = NodePath("../../../Perspective2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="YSort/Columbo"]
+position = Vector2( 595.208, 230.01 )
+scale = Vector2( 1.27396, 1.30549 )
+polygon = PoolVector2Array( 40, -132.6, 40, -126, 38.8, -123.5, 44, -117.4, 44, 63.6, 39, 62.1, 39, 68.8, 36, 77.8, 36, 96.5, 44, 112.9, 44, 134.5, 29.9, 134.5, 5, 120.7, 5, 119.4, -2, 113.4, -2, 105.3, -14, 96.5, -14, 94.4, -12.8, 82.5, -11.4, 82.5, -1, 55.1, -1, 46.9, -2.7, 38.5, -15.9, 26.5, -23, 26.5, -23, 24.3, -44, 3.3, -44, -16.7, -14, -68, -14, -73.8, -13.5, -75.2, -23, -94, -23, -107.5, -20.7, -107.5, 1.3, -124.5, 4.6, -124.5, 12, -126.1, 20, -134.3, 37.1, -134.5 )
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 155, 303 )
+scale = Vector2( 0.609244, 0.609244 )
+global_scale_mod = 1
+grid = NodePath("../../Perspective2D")
+nav_2d_path = NodePath("../../WalkingSpace")
+path_offset = 60.0
+
+[node name="Rail" type="Sprite" parent="."]
+position = Vector2( 320, 359 )
+texture = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 2, 69 )
+anchor_mode = 0
+current = true
+
+[connection signal="mouse_entered" from="Interactives/Walkway" to="Interactives/Walkway" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/Walkway" to="Interactives/Walkway" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Interactives/Closet" to="Interactives/Closet" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/Closet" to="Interactives/Closet" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Interactives/Bedroom" to="Interactives/Bedroom" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/Bedroom" to="Interactives/Bedroom" method="_on_Area2D_mouse_exited"]
+[connection signal="input_event" from="Interactives/TackyPoster" to="Interactives/TackyPoster" method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="Interactives/TackyPoster" to="Interactives/TackyPoster" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/TackyPoster" to="Interactives/TackyPoster" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Interactives/Downstairs" to="Interactives/Downstairs" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/Downstairs" to="Interactives/Downstairs" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Interactives/Tree" to="Interactives/Tree" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/Tree" to="Interactives/Tree" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="Interactives/Bear" to="Interactives/Bear" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Interactives/Bear" to="Interactives/Bear" method="_on_Area2D_mouse_exited"]
+[connection signal="mouse_entered" from="YSort/Columbo" to="YSort/Columbo" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="YSort/Columbo" to="YSort/Columbo" method="_on_Area2D_mouse_exited"]
+[connection signal="navigation_finished" from="YSort/Player" to="YSort/Player" method="_on_Player_navigation_finished"]

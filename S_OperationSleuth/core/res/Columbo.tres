@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://core/res/ItemData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Columbo"
+dialogue_bank = [ "gesvwajgvbhwn", "wabhwahbas" ]
+interaction_bank = [ 1, 4 ]
