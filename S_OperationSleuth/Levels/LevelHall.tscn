@@ -1,25 +1,828 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Assets/hall.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/rail.png" type="Texture" id=3]
+[ext_resource path="res://core/res/InteractiveItem.gd" type="Script" id=4]
+[ext_resource path="res://core/res/ItemData.gd" type="Script" id=5]
+[ext_resource path="res://Levels/Level.gd" type="Script" id=6]
+[ext_resource path="res://Assets/cabinet.png" type="Texture" id=7]
+[ext_resource path="res://Assets/bear.png" type="Texture" id=8]
 [ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 150.959, -8.11038, 320.543, 124.697, 323.484, 190.594, 181.347, 188.566, 99.9859, 66.9105, -158.801, -6.08279, -172.525, 65.8967, -317.603, 122.669, -291.136, 188.566, -316.622, 189.58 )
+vertices = PoolVector2Array( 150.959, -8.11038, 320.543, 124.697, 323.484, 190.594, 212.716, 189.58, 121.552, 51.7036, -158.801, -6.08279, -174.486, 50.6898, -317.603, 122.669, -313.682, 189.58, -316.622, 189.58 )
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 0, 4, 6 ), PoolIntArray( 7, 5, 6, 8, 9 ) ]
-outlines = [ PoolVector2Array( 181.347, 188.566, 323.484, 190.594, 320.543, 124.697, 150.959, -8.11038, -158.801, -6.08279, -317.603, 122.669, -316.622, 189.58, -291.136, 188.566, -172.525, 65.8967, 99.9859, 66.9105 ) ]
+outlines = [ PoolVector2Array( 212.716, 189.58, 323.484, 190.594, 320.543, 124.697, 150.959, -8.11038, -158.801, -6.08279, -317.603, 122.669, -316.622, 189.58, -313.682, 189.58, -174.486, 50.6898, 121.552, 51.7036 ) ]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="Resource" id=3]
+script = ExtResource( 5 )
+name = "bedroom"
+dialogue_bank = [  ]
+primary_interaction = 4
+secondary_interaction = 1
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=23]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=24]
+script = SubResource( 23 )
+name = "bedroom"
+dialogue_bank = [  ]
+primary_interaction = 4
+secondary_interaction = 1
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=25]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=26]
+script = SubResource( 25 )
+name = "bedroom"
+dialogue_bank = [  ]
+primary_interaction = 4
+secondary_interaction = 1
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=27]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=28]
+script = SubResource( 27 )
+name = "bedroom"
+dialogue_bank = [  ]
+primary_interaction = 4
+secondary_interaction = 1
+bonus_values = {
+}
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 5 )
+name = "closet"
+dialogue_bank = [ "test" ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=29]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=30]
+script = SubResource( 29 )
+name = "closet"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=31]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=32]
+script = SubResource( 31 )
+name = "closet"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=33]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=34]
+script = SubResource( 33 )
+name = "closet"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 5 )
+name = "tacky poster"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=35]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=36]
+script = SubResource( 35 )
+name = "tacky poster"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=37]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=38]
+script = SubResource( 37 )
+name = "tacky poster"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=39]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=40]
+script = SubResource( 39 )
+name = "tacky poster"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="Resource" id=41]
+script = ExtResource( 5 )
+name = "lamp"
+dialogue_bank = [  ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=42]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=43]
+script = SubResource( 42 )
+name = "lamp"
+dialogue_bank = [  ]
+primary_interaction = 0
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=44]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=45]
+script = SubResource( 44 )
+name = "lamp"
+dialogue_bank = [  ]
+primary_interaction = 0
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=46]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=47]
+script = SubResource( 46 )
+name = "lamp"
+dialogue_bank = [  ]
+primary_interaction = 0
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="Resource" id=48]
+script = ExtResource( 5 )
+name = "stairway"
+dialogue_bank = [ "You can't go DOWNSTAIRS yet! There's nothing of interest down there, and you really don't feel like throwing in more RED HERRINGS than there have to be. Besides, your MOTHER might be there." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=62]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=63]
+script = SubResource( 62 )
+name = "stairway"
+dialogue_bank = [ "You can't go DOWNSTAIRS yet! There's nothing of interest down there, and you really don't feel like throwing in more RED HERRINGS than there have to be. Besides, your MOTHER might be there." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=64]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=65]
+script = SubResource( 64 )
+name = "stairway"
+dialogue_bank = [ "You can't go DOWNSTAIRS yet! There's nothing of interest down there, and you really don't feel like throwing in more RED HERRINGS than there have to be. Besides, your MOTHER might be there." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=66]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=67]
+script = SubResource( 66 )
+name = "stairway"
+dialogue_bank = [ "You can't go DOWNSTAIRS yet! There's nothing of interest down there, and you really don't feel like throwing in more RED HERRINGS than there have to be. Besides, your MOTHER might be there." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="Resource" id=74]
+script = ExtResource( 5 )
+name = "tacky rug"
+dialogue_bank = [ "This rug is so SHITTY. It's just a heart with some PINK SPOTS, but for WHATEVER REASON, your mother can't live without it." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=56]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=57]
+script = SubResource( 56 )
+name = "tacky rug"
+dialogue_bank = [ "This TACKY RUG reminds you of" ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=58]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=59]
+script = SubResource( 58 )
+name = "tacky rug"
+dialogue_bank = [ "This TACKY RUG reminds you of" ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=60]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=61]
+script = SubResource( 60 )
+name = "tacky rug"
+dialogue_bank = [ "This TACKY RUG reminds you of" ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="Resource" id=55]
+script = ExtResource( 5 )
+name = "plush bear"
+dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=68]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=69]
+script = SubResource( 68 )
+name = "plush bear"
+dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=70]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=71]
+script = SubResource( 70 )
+name = "plush bear"
+dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[sub_resource type="GDScript" id=72]
+script/source = "extends Resource
+class_name ItemData
+
+enum InteractionMode { NONE, EXAMINE, CAPTCHA, WALK, ENTER }
+# Simple string data for UI displays.
+export (String) var name
+export (Array, String, MULTILINE) var dialogue_bank
+# LMB and RMB based interactions, used to reduce amount of boolean logic.
+export (InteractionMode) var primary_interaction
+export (InteractionMode) var secondary_interaction
+export (Dictionary) var bonus_values
+
+func get_dialogue(idx: int) -> String:
+	if idx > dialogue_bank: return \"\"
+	return dialogue_bank[idx]
+
+func get_action_name(idx: int) -> String:
+	match idx:
+		0:
+			return str(InteractionMode.keys()[primary_interaction])
+		1:
+			return str(InteractionMode.keys()[secondary_interaction])
+	return \"\"
+"
+
+[sub_resource type="Resource" id=73]
+script = SubResource( 72 )
+name = "plush bear"
+dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
+primary_interaction = 1
+secondary_interaction = 0
+bonus_values = {
+}
+
+[node name="Node2D" type="YSort"]
 position = Vector2( -3, -1 )
+script = ExtResource( 6 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 325, 117 )
+position = Vector2( 328, -9 )
 texture = ExtResource( 1 )
-offset = Vector2( 3, 109 )
+offset = Vector2( 0, 235 )
 
 [node name="Perspective2D" type="Node2D" parent="."]
-visible = false
 position = Vector2( -1, 0 )
 scale = Vector2( 0.99797, 0.982142 )
 script = ExtResource( 9 )
@@ -35,23 +838,123 @@ position = Vector2( 325, 265 )
 scale = Vector2( 1.02014, 0.986392 )
 navpoly = SubResource( 1 )
 
-[node name="YSort" type="YSort" parent="."]
+[node name="Interactives" type="Node2D" parent="."]
 
-[node name="Player" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 452, 293 )
+[node name="Bedroom" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 3 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 24 ),
+"solved_puzzle2": SubResource( 26 ),
+"solved_puzzle3": SubResource( 28 )
+}
+
+[node name="CollisionShape2D2" type="CollisionPolygon2D" parent="Interactives/Bedroom"]
+position = Vector2( 172, 255 )
+polygon = PoolVector2Array( -47, -125, -103, -130, -100, 63, -47, 20 )
+
+[node name="Closet" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 2 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 30 ),
+"solved_puzzle2": SubResource( 32 ),
+"solved_puzzle3": SubResource( 34 )
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/Closet"]
+position = Vector2( 102, -86 )
+polygon = PoolVector2Array( 185, 215, 260, 215, 259, 331, 186, 332 )
+
+[node name="TackyPoster" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 4 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 36 ),
+"solved_puzzle2": SubResource( 38 ),
+"solved_puzzle3": SubResource( 40 )
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/TackyPoster"]
+position = Vector2( 102, -86 )
+polygon = PoolVector2Array( 291, 247, 334, 246, 333, 300, 291, 300 )
+
+[node name="Lamp" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 41 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 43 ),
+"solved_puzzle2": SubResource( 45 ),
+"solved_puzzle3": SubResource( 47 )
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/Lamp"]
+position = Vector2( 102, -86 )
+polygon = PoolVector2Array( 189, 167, 223, 176, 260, 168, 244, 141, 206, 141 )
+
+[node name="Stairway" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 48 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 63 ),
+"solved_puzzle2": SubResource( 65 ),
+"solved_puzzle3": SubResource( 67 )
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/Stairway"]
+position = Vector2( 102, -86 )
+polygon = PoolVector2Array( -49, 537, 44, 442, 316, 444, 367, 537 )
+
+[node name="TackyRug" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 74 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 57 ),
+"solved_puzzle2": SubResource( 59 ),
+"solved_puzzle3": SubResource( 61 )
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/TackyRug"]
+position = Vector2( 102, -86 )
+polygon = PoolVector2Array( 160, 342, 136, 353, 134, 368, 145, 378, 172, 397, 218, 415, 298, 377, 291, 343, 238, 342, 218, 355, 196, 343 )
+
+[node name="PlushBear" type="Area2D" parent="Interactives"]
+script = ExtResource( 4 )
+item_data_stateless = SubResource( 55 )
+item_data_stateful = {
+"solved_puzzle1": SubResource( 69 ),
+"solved_puzzle2": SubResource( 71 ),
+"solved_puzzle3": SubResource( 73 )
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/PlushBear"]
+position = Vector2( 20, -222 )
+polygon = PoolVector2Array( 159, 346, 152, 343, 144, 353, 147, 360, 146, 377, 143, 382, 135, 388, 135, 396, 126, 422, 129, 431, 142, 431, 148, 424, 149, 432, 161, 435, 169, 431, 170, 417, 183, 409, 184, 403, 195, 402, 199, 394, 190, 385, 184, 380, 188, 369, 187, 364, 193, 358, 192, 350, 186, 345, 179, 349, 169, 343 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 296, 293 )
 scale = Vector2( 0.567227, 0.567227 )
 global_scale_mod = 1
-grid = NodePath("../../Perspective2D")
-nav_2d_path = NodePath("../../WalkingSpace")
+grid = NodePath("../Perspective2D")
+nav_2d_path = NodePath("../WalkingSpace")
 path_offset = 60.0
 
 [node name="Rail" type="Sprite" parent="."]
-position = Vector2( 320, 359 )
+position = Vector2( 320, 451 )
 texture = ExtResource( 3 )
+offset = Vector2( 0, -92 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 2, 69 )
 anchor_mode = 0
 current = true
 
-[connection signal="navigation_finished" from="YSort/Player" to="YSort/Player" method="_on_Player_navigation_finished"]
+[node name="Bear" type="Sprite" parent="."]
+position = Vector2( 177, 214 )
+texture = ExtResource( 8 )
+offset = Vector2( 5, -47 )
+
+[node name="Cabinet" type="Sprite" parent="."]
+position = Vector2( 177, 199 )
+texture = ExtResource( 7 )
+offset = Vector2( 4, 24 )

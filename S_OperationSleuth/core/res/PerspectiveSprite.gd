@@ -9,15 +9,15 @@ func _process(_delta: float) -> void:
 	perspective_scale(get_node(grid).points)
 	global_scale *= global_scale_mod
 
-func perspective_scale(grid: PoolVector2Array):
+func perspective_scale(p_grid: PoolVector2Array):
 	var scale_mod = get_rect().size.y
-	match grid.size():
+	match p_grid.size():
 		1:
-			var distance = abs(grid[0].y - global_position.y)
+			var distance = abs(p_grid[0].y - global_position.y)
 			global_scale = Vector2.ONE * (distance / scale_mod)
 		2:
-			var pt0 = grid[0]
-			var pt1 = grid[1]
+			var pt0 = p_grid[0]
+			var pt1 = p_grid[1]
 			var gpos = global_position
 			
 			var distance_y = pt0.y + (pt1.y - pt0.y) * (gpos.x - pt0.x) / (pt1.x - pt0.x)

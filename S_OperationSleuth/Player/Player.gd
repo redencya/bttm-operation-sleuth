@@ -14,7 +14,7 @@ var direction : Vector2
 var navigating := false
 
 func _ready() -> void:
-	GameManager.player = self
+	#GameManager.player = self
 	connect("navigation_finished", GameManager, "_on_navigation_finished")
 
 func _process(delta: float) -> void:
@@ -34,7 +34,7 @@ func create_path(target : Vector2):
 
 func move_along_path(distance: float) -> void:
 	var start_point := position
-	for i in range(path.size()):
+	for _i in range(path.size()):
 		var distance_to_next := start_point.distance_to(path[0])
 		direction = start_point.direction_to(path[0])
 		if distance <= distance_to_next and distance >= 0.0:

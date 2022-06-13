@@ -1,5 +1,5 @@
 tool
-extends HBo
+extends HBoxContainer
 
 export (Color) var main_color
 

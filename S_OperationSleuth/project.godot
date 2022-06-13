@@ -9,15 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PerspectiveSprite",
-"class": "InteractiveItem",
+"base": "Area2D",
+"class": "InteractiveObject",
 "language": "GDScript",
-"path": "res://Objects/InteractiveItem.gd"
+"path": "res://core/res/InteractiveItem.gd"
 }, {
 "base": "Resource",
 "class": "ItemData",
 "language": "GDScript",
 "path": "res://core/res/ItemData.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Levels/Level.gd"
 }, {
 "base": "PanelContainer",
 "class": "NarrativeBox",
@@ -32,7 +37,7 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "PerspectiveSprite",
 "language": "GDScript",
-"path": "res://core/PerspectiveSprite.gd"
+"path": "res://core/res/PerspectiveSprite.gd"
 }, {
 "base": "PerspectiveSprite",
 "class": "Player",
@@ -45,8 +50,9 @@ _global_script_classes=[ {
 "path": "res://Objects/StaticEntity.gd"
 } ]
 _global_script_class_icons={
-"InteractiveItem": "",
+"InteractiveObject": "",
 "ItemData": "",
+"Level": "",
 "NarrativeBox": "",
 "Perspective2D": "",
 "PerspectiveSprite": "",
@@ -62,9 +68,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Interface="*res://Interface/Interface.tscn"
-MouseManager="*res://core/MouseManager.gd"
-GameManager="*res://core/GameManager.gd"
+InterfaceManager="*res://Interface/Interface.tscn"
+MouseManager="*res://core/global/MouseManager.gd"
+GameManager="*res://core/global/GameManager.gd"
 
 [display]
 

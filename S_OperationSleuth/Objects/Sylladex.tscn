@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://core/SylladexManager.gd" type="Script" id=1]
+[ext_resource path="res://core/global/SylladexManager.gd" type="Script" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -8,6 +8,7 @@
 margin_right = 650.0
 margin_bottom = 500.0
 script = ExtResource( 1 )
+main_color = Color( 0.101961, 0.239216, 0.968627, 1 )
 
 [node name="Label" type="Label" parent="."]
 margin_right = 650.0
