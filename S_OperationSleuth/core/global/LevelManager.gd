@@ -1,25 +1,21 @@
 extends Node
 
 var levels = []
-var last_level : Level
+var last_level : Level setget set_last_level
+
+func set_last_level(new_level: Level) -> void:
+	last_level = new_level
 
 # Logic called on game load.
 func _ready() -> void:
-	pass
+	serialize_levels()
 
-# Logic called on scene load.
-func _setup(level: Level):
-	match_player_position(last_level, level.relations)
+func match_player_position(relations: Dictionary):
+	# if we dont know of the connection we ollie the f out
+	if !(last_level in relations.keys()): return
+	# okay so this won't work until there's a player reference
+	# and putting in a player reference in HERE would be 
+	# jank as hell, so we're gonna postpone this woooo
 	
-	InterfaceManager.transition(true)
-	InterfaceManager.clear_display()
-
-# Logic called on scene deload.
-func _cleanup(level: Level):
-	last_level = level
-# This call is super important (DO NOT REMOVE)
-	GameManager     .clear_nonpersistent()
-	InterfaceManager.transition(false)
-	
-func match_player_position(old_level: Level, level_relations: Array):
+func serialize_levels() -> void:
 	pass

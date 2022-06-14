@@ -48,11 +48,6 @@ _global_script_classes=[ {
 "class": "StaticEntity",
 "language": "GDScript",
 "path": "res://Objects/StaticEntity.gd"
-}, {
-"base": "VBoxContainer",
-"class": "SylladexManager",
-"language": "GDScript",
-"path": "res://core/global/SylladexManager.gd"
 } ]
 _global_script_class_icons={
 "InteractiveObject": "",
@@ -62,8 +57,7 @@ _global_script_class_icons={
 "Perspective2D": "",
 "PerspectiveSprite": "",
 "Player": "",
-"StaticEntity": "",
-"SylladexManager": ""
+"StaticEntity": ""
 }
 
 [application]
@@ -76,14 +70,9 @@ config/icon="res://icon.png"
 
 InterfaceManager="*res://Interface/Interface.tscn"
 MouseManager="*res://core/global/MouseManager.gd"
-<<<<<<< HEAD
-GameManager="*res://core/global/GameManager.gd"
-LevelManager="*res://core/global/LevelManager.gd"
-=======
 EventManager="*res://core/global/EventManager.gd"
 LevelManager="*res://core/global/LevelManager.gd"
 CaptchaManager="*res://core/global/CaptchaManager.gd"
->>>>>>> 0a10f4d (Initial commit)
 
 [display]
 

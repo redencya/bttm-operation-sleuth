@@ -2,17 +2,14 @@ extends Node2D
 class_name Level
 
 export (int) var id
-export (Array, int) var relations
+export (Dictionary) var relations
 
-func _ready():
-<<<<<<< HEAD
-	# Setup for LevelManager functions
-	connect("tree_exiting", LevelManager, "_cleanup", [self])
-	connect("ready", LevelManager, "_setup", [self])
+func _enter_tree() -> void:
+	LevelManager    .match_player_position(relations)
+	InterfaceManager.transition(true)
+	InterfaceManager.clear_display()
 
-=======
-	# This is used to clean up all the junk on interfaces and in logic
-	# Remove it and suddenly levels bleed into each other
-	connect("tree_exiting", EventManager, "_on_tree_exiting")
-	connect("tree_exiting", InterfaceManager, "_on_tree_exiting")
->>>>>>> 0a10f4d (Initial commit)
+func _exit_tree() -> void:
+	LevelManager    .set_last_level(self)
+	EventManager    .clear_nonpersistent()
+	InterfaceManager.transition(false)
