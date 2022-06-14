@@ -32,3 +32,10 @@ func _on_navigation_finished():
 			InterfaceManager.play_with_text(selected_object.get_dialogue(0))
 		ItemData.InteractionMode.ENTER:
 			get_tree().change_scene(levels[selected_object.name.to_lower()])
+
+func clear_persistent():
+	pass
+	
+func clear_nonpersistent():
+	selected_object = null
+	pass

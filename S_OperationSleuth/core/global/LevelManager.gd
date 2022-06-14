@@ -10,11 +10,16 @@ func _ready() -> void:
 # Logic called on scene load.
 func _setup(level: Level):
 	match_player_position(last_level, level.relations)
+	
+	InterfaceManager.transition(true)
+	InterfaceManager.clear_display()
 
 # Logic called on scene deload.
 func _cleanup(level: Level):
-	GameManager.selected_object = null
 	last_level = level
+# This call is super important (DO NOT REMOVE)
+	GameManager     .clear_nonpersistent()
+	InterfaceManager.transition(false)
 	
 func match_player_position(old_level: Level, level_relations: Array):
 	pass
