@@ -23,10 +23,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int, object
 	if event.is_action_pressed("interact"):
 		selected_object = object
 
-func _on_tree_exiting():
-	# Clean-up to prevent fuckups between levels
-	selected_object = null
-
 func _on_navigation_finished():
 	if !selected_object:
 		return

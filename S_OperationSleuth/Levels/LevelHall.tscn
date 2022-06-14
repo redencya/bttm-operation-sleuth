@@ -813,7 +813,7 @@ secondary_interaction = 0
 bonus_values = {
 }
 
-[node name="Node2D" type="YSort"]
+[node name="Hall" type="YSort"]
 position = Vector2( -3, -1 )
 script = ExtResource( 6 )
 
