@@ -71,6 +71,8 @@ config/icon="res://icon.png"
 InterfaceManager="*res://Interface/Interface.tscn"
 MouseManager="*res://core/global/MouseManager.gd"
 GameManager="*res://core/global/GameManager.gd"
+LevelManager="*res://core/global/LevelManager.gd"
+CaptchaManager="*res://core/global/CaptchaManager.gd"
 
 [display]
 
