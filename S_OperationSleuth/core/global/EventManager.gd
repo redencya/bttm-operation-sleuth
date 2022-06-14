@@ -9,7 +9,6 @@ var levels : = {
 }
 
 var selected_object : InteractiveObject
-#onready var player : Player
 var events_count = 3
 var events : Dictionary = {
 	"solved_puzzle1" : false,

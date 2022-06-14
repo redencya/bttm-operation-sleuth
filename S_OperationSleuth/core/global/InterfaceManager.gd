@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && displayed:
 		$NarrativeBox/AnimationPlayer.play("RESET")
 		displayed = false
-		GameManager.selected_object = null
+		EventManager.selected_object = null
 
 func _on_mouse_entered(object: InteractiveObject):
 	set_command(object.get_hover_text())
