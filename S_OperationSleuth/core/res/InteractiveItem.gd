@@ -10,7 +10,7 @@ func _ready() -> void:
 	# Logic that gets delegated to Managers
 	connect("mouse_entered", InterfaceManager, "_on_mouse_entered", [self])
 	connect("mouse_exited", InterfaceManager, "_on_mouse_exited", [self])
-	connect("input_event", GameManager, "_on_input_event", [self])
+	connect("input_event", EventManager, "_on_input_event", [self])
 
 func _process(_delta: float) -> void:
 	# QoL, the script will automatically resize the events pile
@@ -18,8 +18,8 @@ func _process(_delta: float) -> void:
 		if !item_data_stateless:
 			item_data_stateless = ItemData.new()
 		if !item_data_stateful || refresh_states:
-			for i in range(0, GameManager.events.size()):
-				item_data_stateful[GameManager.events.keys()[i]] = item_data_stateless.duplicate(true)
+			for i in range(0, EventManager.events.size()):
+				item_data_stateful[EventManager.events.keys()[i]] = item_data_stateless.duplicate(true)
 			refresh_states = false
 			print("states refreshed!")
 

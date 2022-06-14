@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && displayed:
 		$AnimationPlayer.play("RESET")
 		displayed = false
-		GameManager.selected_object = null
+		EventManager.selected_object = null
 
 # These methods are going to be used to play a fancy animation between level switches
 func transition(play_backwards: bool):
