@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/rail.png" type="Texture" id=3]
 [ext_resource path="res://core/res/InteractiveItem.gd" type="Script" id=4]
 [ext_resource path="res://core/res/ItemData.gd" type="Script" id=5]
-[ext_resource path="res://Levels/Level.gd" type="Script" id=6]
+[ext_resource path="res://Objects/Level.gd" type="Script" id=6]
 [ext_resource path="res://Assets/cabinet.png" type="Texture" id=7]
 [ext_resource path="res://Assets/bear.png" type="Texture" id=8]
 [ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=9]
@@ -708,7 +708,7 @@ secondary_interaction = 0
 bonus_values = {
 }
 
-[sub_resource type="GDScript" id=68]
+[sub_resource type="GDScript" id=75]
 script/source = "extends Resource
 class_name ItemData
 
@@ -734,8 +734,8 @@ func get_action_name(idx: int) -> String:
 	return \"\"
 "
 
-[sub_resource type="Resource" id=69]
-script = SubResource( 68 )
+[sub_resource type="Resource" id=76]
+script = SubResource( 75 )
 name = "plush bear"
 dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
 primary_interaction = 1
@@ -743,7 +743,7 @@ secondary_interaction = 0
 bonus_values = {
 }
 
-[sub_resource type="GDScript" id=70]
+[sub_resource type="GDScript" id=77]
 script/source = "extends Resource
 class_name ItemData
 
@@ -769,8 +769,8 @@ func get_action_name(idx: int) -> String:
 	return \"\"
 "
 
-[sub_resource type="Resource" id=71]
-script = SubResource( 70 )
+[sub_resource type="Resource" id=78]
+script = SubResource( 77 )
 name = "plush bear"
 dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
 primary_interaction = 1
@@ -778,7 +778,7 @@ secondary_interaction = 0
 bonus_values = {
 }
 
-[sub_resource type="GDScript" id=72]
+[sub_resource type="GDScript" id=79]
 script/source = "extends Resource
 class_name ItemData
 
@@ -804,8 +804,8 @@ func get_action_name(idx: int) -> String:
 	return \"\"
 "
 
-[sub_resource type="Resource" id=73]
-script = SubResource( 72 )
+[sub_resource type="Resource" id=80]
+script = SubResource( 79 )
 name = "plush bear"
 dialogue_bank = [ "MR. LUMPYBUTT has seen better days in his short life. Now that your mother has claimed him, he's been reduced to a decoration she uses to start LONG-WINDED CONVERSATIONS with other MOMS." ]
 primary_interaction = 1
@@ -922,9 +922,9 @@ polygon = PoolVector2Array( 160, 342, 136, 353, 134, 368, 145, 378, 172, 397, 21
 script = ExtResource( 4 )
 item_data_stateless = SubResource( 55 )
 item_data_stateful = {
-"solved_puzzle1": SubResource( 69 ),
-"solved_puzzle2": SubResource( 71 ),
-"solved_puzzle3": SubResource( 73 )
+"solved_puzzle1": SubResource( 76 ),
+"solved_puzzle2": SubResource( 78 ),
+"solved_puzzle3": SubResource( 80 )
 }
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/PlushBear"]

@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=5]
 [ext_resource path="res://core/res/InteractiveItem.gd" type="Script" id=6]
 [ext_resource path="res://core/res/ItemData.gd" type="Script" id=7]
-[ext_resource path="res://Levels/Level.gd" type="Script" id=8]
+[ext_resource path="res://Objects/Level.gd" type="Script" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( -113, -29, 63, -61, 168, -49, -16, 16, -92, 19, -92, 38, -16, 32, 136, 88, -16, 168, -40, 168, -174, 77 )

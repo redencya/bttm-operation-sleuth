@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
-"path": "res://Levels/Level.gd"
+"path": "res://Objects/Level.gd"
 }, {
 "base": "PanelContainer",
 "class": "NarrativeBox",
