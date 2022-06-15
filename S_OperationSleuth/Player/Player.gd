@@ -14,8 +14,7 @@ var direction : Vector2
 var navigating := false
 
 func _ready() -> void:
-	#GameManager.player = self
-	connect("navigation_finished", GameManager, "_on_navigation_finished")
+	connect("navigation_finished", EventManager, "_on_navigation_finished")
 
 func _process(delta: float) -> void:
 	if navigating:

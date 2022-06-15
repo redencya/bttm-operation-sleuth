@@ -23,19 +23,6 @@ content_margin_left = 15.0
 content_margin_top = 11.0
 bg_color = Color( 0.933333, 0.933333, 0.933333, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
-content_margin_left = 20.0
-content_margin_right = 20.0
-content_margin_top = 10.0
-content_margin_bottom = 10.0
-bg_color = Color( 0.933333, 0.933333, 0.933333, 1 )
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-anti_aliasing = false
-anti_aliasing_size = 0.01
-
 [sub_resource type="Animation" id=5]
 length = 0.001
 tracks/0/type = "value"
@@ -175,6 +162,19 @@ tracks/4/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0.156863 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 10.0
+content_margin_bottom = 10.0
+bg_color = Color( 0.933333, 0.933333, 0.933333, 1 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+anti_aliasing = false
+anti_aliasing_size = 0.01
+
 [node name="Overlay" type="CanvasLayer"]
 process_priority = -1
 layer = 2
@@ -239,6 +239,10 @@ bbcode_text = "[color=#333]>  [/color][u]Fran: %s.[/u]"
 text = ">  Fran: %s."
 fit_content_height = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
+anims/narrative_slidein = SubResource( 6 )
+
 [node name="NarrativeBox" type="PanelContainer" parent="."]
 margin_top = 455.0
 margin_right = 650.0
@@ -247,12 +251,6 @@ rect_min_size = Vector2( 650, 120 )
 rect_scale = Vector2( 1, 1e-05 )
 custom_styles/panel = SubResource( 4 )
 script = ExtResource( 4 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="NarrativeBox"]
-root_node = NodePath("../..")
-autoplay = "RESET"
-anims/RESET = SubResource( 5 )
-anims/narrative_slidein = SubResource( 6 )
 
 [node name="Tween" type="Tween" parent="NarrativeBox"]
 
@@ -269,7 +267,3 @@ align = 1
 valign = 1
 autowrap = true
 percent_visible = 0.0
-
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0

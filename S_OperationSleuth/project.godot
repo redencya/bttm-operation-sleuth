@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
-"path": "res://Levels/Level.gd"
+"path": "res://Objects/Level.gd"
 }, {
 "base": "PanelContainer",
 "class": "NarrativeBox",
@@ -63,14 +63,16 @@ _global_script_class_icons={
 [application]
 
 config/name="S_OperationSleuth"
-run/main_scene="res://Levels/LevelHall.tscn"
+run/main_scene="res://Levels/00_LevelHall.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 InterfaceManager="*res://Interface/Interface.tscn"
 MouseManager="*res://core/global/MouseManager.gd"
-GameManager="*res://core/global/GameManager.gd"
+EventManager="*res://core/global/EventManager.gd"
+LevelManager="*res://core/global/LevelManager.gd"
+CaptchaManager="*res://core/global/CaptchaManager.gd"
 
 [display]
 
