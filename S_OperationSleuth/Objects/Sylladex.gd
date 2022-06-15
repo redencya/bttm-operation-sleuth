@@ -40,3 +40,6 @@ func set_card_size() -> void:
 	var card_deck = $CardContainer/CardDeck
 	
 	card_deck.add_child(captchacard)
+
+func _on_card_captchalogued() -> void:
+	pass

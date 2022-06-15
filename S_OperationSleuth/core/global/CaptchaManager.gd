@@ -5,15 +5,16 @@ signal card_removed
 signal request_successful
 signal request_failed
 
-var cards_size_limit : int
+var cards_size_limit : int = 4
 var cards := []
 var current_card
 
 # Called whenever an attempt is made to CAPTCHALOGUE a card.
-func _captchalogue(card):
+func _captchalogue(card : ItemData):
 	# fails if the card would overflow the limit.
 	if cards.size()+1 > cards_size_limit: return
-	# code here
+	cards.append(card)
+	print(cards)
 	emit_signal("card_added")
 
 # Called whenever an attempt is made to EJECT a card.
