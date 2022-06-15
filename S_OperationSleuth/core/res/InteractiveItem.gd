@@ -5,6 +5,7 @@ class_name InteractiveObject
 export (Resource) var item_data_stateless
 export (Dictionary) var item_data_stateful
 export var refresh_states : bool
+var current_dataset = ""
 
 func _ready() -> void:
 	# Logic that gets delegated to Managers
@@ -29,13 +30,17 @@ func _pick_dataset(state: String) -> ItemData:
 	return item_data_stateful[state] as ItemData
 
 func get_dialogue(idx: int):
-	var dataset = _pick_dataset("")
+	var dataset = _pick_dataset(current_dataset)
 	if idx < dataset.dialogue_bank.size():
 		return dataset.dialogue_bank[idx]
 
+func get_bonus_values() -> Dictionary:
+	var dataset = _pick_dataset(current_dataset)
+	return dataset.bonus_values
+
 func get_hover_text() -> String:
 	# There should be a value here but it's just testing rn
-	var dataset = _pick_dataset("")
+	var dataset = _pick_dataset(current_dataset)
 	var action_name : String = dataset.get_action_name(0).capitalize()
 	var item_name : String = dataset.name
 	var template = "Fran: %s %s."
@@ -43,5 +48,5 @@ func get_hover_text() -> String:
 	return template % [action_name, item_name]
 
 func get_hover_cursor() -> int:
-	var dataset = _pick_dataset("")
+	var dataset = _pick_dataset(current_dataset)
 	return dataset.primary_interaction as int

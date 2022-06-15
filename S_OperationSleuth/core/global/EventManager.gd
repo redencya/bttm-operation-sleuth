@@ -3,11 +3,6 @@
 tool
 extends Node
 
-var levels : = {
-	"bedroom" : "res://Levels/LevelBedroom.tscn",
-	"hall" : "res://Levels/LevelHall.tscn"
-}
-
 var selected_object : InteractiveObject
 var events_count = 3
 var events : Dictionary = {
@@ -30,11 +25,11 @@ func _on_navigation_finished():
 		ItemData.InteractionMode.EXAMINE:
 			InterfaceManager.play_with_text(selected_object.get_dialogue(0))
 		ItemData.InteractionMode.ENTER:
-			get_tree().change_scene(levels[selected_object.name.to_lower()])
+			if !("exits_to" in selected_object.get_bonus_values().keys()): return
+			LevelManager.switch_to(selected_object.get_bonus_values()["exits_to"])
 
 func clear_persistent():
 	pass
 	
 func clear_nonpersistent():
 	selected_object = null
-	pass
