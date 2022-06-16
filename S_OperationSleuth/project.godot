@@ -70,9 +70,9 @@ config/icon="res://icon.png"
 
 InterfaceManager="*res://Interface/Interface.tscn"
 MouseManager="*res://core/global/MouseManager.gd"
-EventManager="*res://core/global/EventManager.gd"
 LevelManager="*res://core/global/LevelManager.gd"
 CaptchaManager="*res://core/global/CaptchaManager.gd"
+EventManager="*res://core/global/EventManager.gd"
 
 [display]
 

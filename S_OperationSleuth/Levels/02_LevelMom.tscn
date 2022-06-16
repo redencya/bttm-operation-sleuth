@@ -1,20 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://LevelBedroom.png" type="Texture" id=1]
-[ext_resource path="res://Player/help.PNG" type="Texture" id=2]
-[ext_resource path="res://Temp/FranSprite.png" type="Texture" id=3]
+[ext_resource path="res://Levels/mom's room.png" type="Texture" id=1]
+[ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://core/res/InteractiveItem.gd" type="Script" id=4]
 [ext_resource path="res://core/res/ItemData.gd" type="Script" id=5]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=7]
-[ext_resource path="res://Objects/Level.gd" type="Script" id=8]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( -121, 117, -210, 62, -152, 33, -121, 100, -6, -40, -4, -48, 45, -62, 46, -38, 44, 17, 33, 60, -58, 68, -146, 12, -113, -29, -69, -21, -143, -30, 13, 96 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8, 9 ), PoolIntArray( 10, 3, 2, 11, 12, 13 ), PoolIntArray( 11, 14, 12 ), PoolIntArray( 9, 15, 10, 13, 4 ) ]
-outlines = [ PoolVector2Array( -121, 117, -121, 100, -58, 68, 13, 96, 33, 60, 44, 17, 46, -38, 45, -62, -4, -48, -6, -40, -69, -21, -113, -29, -143, -30, -146, 12, -152, 33, -210, 62 ) ]
+vertices = PoolVector2Array( 59, -60, 112, -45, 93, -28, -89, -47, 93, 35, 152, 60, 62, 169, -387, 169, -385, -11, -218, -48, -159, -29, -91, -103, -56, -107, -10, -93, 44, -109, 59, -105 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 6, 7, 8, 9, 10 ), PoolIntArray( 4, 6, 10, 3, 2 ), PoolIntArray( 0, 3, 11, 12, 13 ), PoolIntArray( 0, 13, 14, 15 ) ]
+outlines = [ PoolVector2Array( -387, 169, 62, 169, 152, 60, 93, 35, 93, -28, 112, -45, 59, -60, 59, -105, 44, -109, -10, -93, -56, -107, -91, -103, -89, -47, -159, -29, -218, -48, -385, -11 ) ]
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id=9]
 script = ExtResource( 5 )
 name = "hall"
 dialogue_bank = [  ]
@@ -129,76 +126,35 @@ secondary_interaction = 0
 bonus_values = {
 }
 
-[node name="Bedroom" type="Node2D"]
-script = ExtResource( 8 )
-player_path = NodePath("Player")
-id = 1
+[node name="YSort" type="Node2D"]
 
-[node name="Help" type="Sprite" parent="."]
-visible = false
-position = Vector2( 374, 229 )
-texture = ExtResource( 2 )
-
-[node name="Background" type="Sprite" parent="."]
-position = Vector2( 325, 220 )
+[node name="Mom\'sRoom" type="Sprite" parent="."]
+position = Vector2( 326, 227 )
 texture = ExtResource( 1 )
 
 [node name="Perspective2D" type="Node2D" parent="."]
-modulate = Color( 1, 1, 1, 0.156863 )
-script = ExtResource( 7 )
-rotation_offset = 15.0
-preview_cone_size = 3.4
-points = PoolVector2Array( 891, 95, -125, 85 )
-
-[node name="Line2D" type="Line2D" parent="."]
-visible = false
-position = Vector2( 325, 220 )
-points = PoolVector2Array( -381, -116, 563, -124 )
-width = 0.5
-
-[node name="Line2D2" type="Line2D" parent="."]
-visible = false
-position = Vector2( 325, 220 )
-points = PoolVector2Array( -349, 68, 563, -124 )
-width = 0.5
-
-[node name="Line2D3" type="Line2D" parent="."]
-visible = false
-position = Vector2( 325, 220 )
-points = PoolVector2Array( 515, -60, -453, -140 )
-width = 5.0
-default_color = Color( 1, 0.4, 0.552941, 1 )
-
-[node name="Line2D4" type="Line2D" parent="."]
-visible = false
-position = Vector2( 325, 220 )
-points = PoolVector2Array( 195, 324, -453, -140 )
-width = 5.0
-default_color = Color( 1, 0.4, 0.552941, 1 )
+modulate = Color( 1, 1, 1, 0.109804 )
+script = ExtResource( 2 )
+preview_cone_size = 1.2
+points = PoolVector2Array( -130, 100, 779, 100 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
-position = Vector2( 376, 232 )
+position = Vector2( 397, 275 )
 navpoly = SubResource( 1 )
 
-[node name="FranSprite" type="Sprite" parent="."]
-visible = false
-position = Vector2( 270, 229 )
-scale = Vector2( -1, 1 )
-texture = ExtResource( 3 )
-
-[node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 394, 203 )
-scale = Vector2( 0.474335, 0.474335 )
-offset = Vector2( -0.806793, -115.764 )
-global_scale_mod = 1
+[node name="Sprite" parent="." instance=ExtResource( 3 )]
+position = Vector2( 106, 293 )
+scale = Vector2( 0.810924, 0.810924 )
+global_scale_mod = 1.0
 grid = NodePath("../Perspective2D")
 nav_2d_path = NodePath("../Navigation2D")
 
 [node name="Hall" type="Area2D" parent="."]
+position = Vector2( 326, 227 )
 script = ExtResource( 4 )
-item_data_stateless = SubResource( 2 )
+item_data_stateless = SubResource( 9 )
 item_data_stateful = {
 "solved_puzzle1": SubResource( 4 ),
 "solved_puzzle2": SubResource( 6 ),
@@ -206,4 +162,4 @@ item_data_stateful = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hall"]
-polygon = PoolVector2Array( 346, 184, 348, 38, 409, 45, 408, 173 )
+polygon = PoolVector2Array( -299, 20, -302, -226, -157, -223, -152, -7 )
