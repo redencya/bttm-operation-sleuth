@@ -4,6 +4,7 @@ class_name PerspectiveSprite
 
 export (float) var global_scale_mod
 export (NodePath) var grid
+export (float) var elevation = 0
 
 func _process(_delta: float) -> void:
 	perspective_scale(get_node(grid).points)
@@ -13,7 +14,7 @@ func perspective_scale(p_grid: PoolVector2Array):
 	var scale_mod = get_rect().size.y
 	match p_grid.size():
 		1:
-			var distance = abs(p_grid[0].y - global_position.y)
+			var distance = abs(p_grid[0].y - (global_position.y + elevation))
 			global_scale = Vector2.ONE * (distance / scale_mod)
 		2:
 			var pt0 = p_grid[0]

@@ -1,0 +1,291 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=2]
+[ext_resource path="res://Assets/bear.png" type="Texture" id=3]
+[ext_resource path="res://core/StateMachine.gd" type="Script" id=4]
+[ext_resource path="res://core/State.gd" type="Script" id=5]
+[ext_resource path="res://Assets/tree.png" type="Texture" id=6]
+[ext_resource path="res://ItemVessel.gd" type="Script" id=8]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+width = 1
+
+[sub_resource type="NavigationPolygon" id=3]
+vertices = PoolVector2Array( -316.622, 189.58, -316.623, -126.724, 319.564, -124.697, 319.564, 188.566, -318.584, 186.538 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4 ) ]
+outlines = [ PoolVector2Array( 319.564, -124.697, -316.623, -126.724, -316.622, 189.58, -318.584, 186.538, 319.564, 188.566 ) ]
+
+[sub_resource type="GDScript" id=16]
+script/source = "extends Resource
+class_name EventSheet
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_COLLIDE, 
+	SET_ITEM,
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	}
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func run_sequence():
+	for event in events:
+		yield(event.exec(), \"progress\")
+
+func add_event():
+	match new_event_type:
+		EventTypes.SET_STATE:
+			events.append(load(\"res://core/default_events/eventSetState.tres\"))
+		EventTypes.SET_COLLIDE:
+			events.append(load(\"res://core/default_events/eventSetCollide.tres\"))
+		EventTypes.SET_ITEM:
+			events.append(load(\"res://core/default_events/eventSetItem.tres\"))
+		EventTypes.DISPLAY_TEXT:
+			events.append(load(\"res://core/default_events/eventDisplayText.tres\"))
+		EventTypes.DISPLAY_ANIMATION:
+			print(\"Not supported yet!\")
+	add_new_event = false
+"
+
+[sub_resource type="Resource" id=17]
+script = SubResource( 16 )
+new_event_type = 0
+add_new_event = false
+events = [  ]
+
+[sub_resource type="GDScript" id=18]
+script/source = "extends Resource
+class_name EventSheet
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_COLLIDE, 
+	SET_ITEM,
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	}
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func run_sequence():
+	for event in events:
+		yield(event.exec(), \"progress\")
+
+func add_event():
+	match new_event_type:
+		EventTypes.SET_STATE:
+			events.append(load(\"res://core/default_events/eventSetState.tres\"))
+		EventTypes.SET_COLLIDE:
+			events.append(load(\"res://core/default_events/eventSetCollide.tres\"))
+		EventTypes.SET_ITEM:
+			events.append(load(\"res://core/default_events/eventSetItem.tres\"))
+		EventTypes.DISPLAY_TEXT:
+			events.append(load(\"res://core/default_events/eventDisplayText.tres\"))
+		EventTypes.DISPLAY_ANIMATION:
+			print(\"Not supported yet!\")
+	add_new_event = false
+"
+
+[sub_resource type="Resource" id=19]
+script = SubResource( 18 )
+new_event_type = 3
+add_new_event = false
+events = [  ]
+
+[sub_resource type="GDScript" id=20]
+script/source = "extends Resource
+class_name EventSheet
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_COLLIDE, 
+	SET_ITEM,
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	}
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func run_sequence():
+	for event in events:
+		yield(event.exec(), \"progress\")
+
+func add_event():
+	match new_event_type:
+		EventTypes.SET_STATE:
+			events.append(load(\"res://core/default_events/eventSetState.tres\"))
+		EventTypes.SET_COLLIDE:
+			events.append(load(\"res://core/default_events/eventSetCollide.tres\"))
+		EventTypes.SET_ITEM:
+			events.append(load(\"res://core/default_events/eventSetItem.tres\"))
+		EventTypes.DISPLAY_TEXT:
+			events.append(load(\"res://core/default_events/eventDisplayText.tres\"))
+		EventTypes.DISPLAY_ANIMATION:
+			print(\"Not supported yet!\")
+	add_new_event = false
+"
+
+[sub_resource type="Resource" id=21]
+script = SubResource( 20 )
+new_event_type = 0
+add_new_event = false
+events = [  ]
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends Resource
+class_name EventSheet
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_DISABLED, 
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	ADD_ITEM,
+	REMOVE_ITEM
+	}
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func run_sequence():
+	for event in events:
+		yield(event.exec(), \"progress\")
+"
+
+[sub_resource type="Resource" id=7]
+script = SubResource( 6 )
+new_event_type = 0
+add_new_event = false
+events = [  ]
+
+[sub_resource type="GDScript" id=12]
+script/source = "extends Resource
+class_name EventSheet
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_DISABLED, 
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	ADD_ITEM,
+	REMOVE_ITEM
+	}
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func run_sequence():
+	for event in events:
+		yield(event.exec(), \"progress\")
+"
+
+[sub_resource type="Resource" id=13]
+script = SubResource( 12 )
+new_event_type = 0
+add_new_event = false
+events = [  ]
+
+[sub_resource type="GDScript" id=14]
+script/source = "extends Resource
+class_name EventSheet
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_DISABLED, 
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	ADD_ITEM,
+	REMOVE_ITEM
+	}
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func run_sequence():
+	for event in events:
+		yield(event.exec(), \"progress\")
+"
+
+[sub_resource type="Resource" id=15]
+script = SubResource( 14 )
+new_event_type = 0
+add_new_event = false
+events = [  ]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 325.75, 249.25 )
+scale = Vector2( 648.5, 499.5 )
+texture = SubResource( 2 )
+
+[node name="Perspective2D" type="Node2D" parent="."]
+script = ExtResource( 2 )
+preview_cone_size = 3.0
+points = PoolVector2Array( 325, 20 )
+
+[node name="WalkingSpace" type="Navigation2D" parent="."]
+pause_mode = 2
+process_priority = 1
+
+[node name="Collider" type="NavigationPolygonInstance" parent="WalkingSpace"]
+position = Vector2( 325, 265 )
+scale = Vector2( 1.02014, 0.986392 )
+navpoly = SubResource( 3 )
+
+[node name="Fran" parent="." instance=ExtResource( 1 )]
+position = Vector2( 332, 219 )
+scale = Vector2( 0.836134, 0.836134 )
+global_scale_mod = 1.0
+grid = NodePath("../Perspective2D")
+nav_2d_path = NodePath("../WalkingSpace")
+
+[node name="Bear" type="Area2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="Sprite" type="Sprite" parent="Bear"]
+position = Vector2( 170, 135 )
+scale = Vector2( 1.05137, 1.05137 )
+texture = ExtResource( 3 )
+
+[node name="States" type="Node" parent="Bear"]
+script = ExtResource( 4 )
+
+[node name="Default" type="Node" parent="Bear/States"]
+script = ExtResource( 5 )
+clicked = SubResource( 17 )
+exit_logic = SubResource( 19 )
+enter_logic = SubResource( 21 )
+
+[node name="Changed" type="Node" parent="Bear/States"]
+script = ExtResource( 5 )
+clicked = SubResource( 7 )
+exit_logic = SubResource( 13 )
+enter_logic = SubResource( 15 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bear"]
+position = Vector2( 170, 135 )
+scale = Vector2( 1.05137, 1.05137 )
+polygon = PoolVector2Array( 32.5, -43.1, 32.5, -40.4, 35, -29, 32.4, -29, 28.5, -24.3, 31, -13, 28.9, -13, 28.3, -11, 36.5, -2, 36.5, 15, 31.2, 19, 28.3, 19, 25.5, 18.5, 17.5, 29, 15, 29, 11.5, 31.1, 11.5, 34.7, 12.9, 43, 10.6, 43, 8.8, 46, -16.9, 46, -18.6, 46, -33.7, 46, -36.5, 44.3, -36.5, 18.1, -31.5, 9.5, -31.5, -0.5, -29.7, -4, -28.2, -4, -18.8, -11.7, -21.5, -15.3, -21.5, -24.5, -19.3, -28.9, -21.9, -42, -19.5, -42, -16.5, -45.7, 17, -46, 18.1, -46, 27.7, -46 )
+
+[node name="Tree" type="Sprite" parent="."]
+position = Vector2( 562, 261 )
+scale = Vector2( 2.11905, 2.11905 )
+texture = ExtResource( 6 )
+
+[connection signal="input_event" from="Bear" to="Bear/States" method="_on_clicked"]

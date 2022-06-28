@@ -1,10 +1,12 @@
 extends CanvasLayer
 
+signal input_given
+
 onready var narrative_box : NarrativeBox = $NarrativeBox 
 var slide_in : String = "narrative_slidein"
 var displayed : bool = false
 
-var bb_code_template = "[color=#333]>  [/color][u]%s[/u]"
+var bb_code_template = "[color=#333]>  [/color][u]Fran: %s[/u]"
 
 const REGULAR = preload("res://Interface/Cursors/Regular.png")
 const EXAMINE = preload("res://Interface/Cursors/Examine.png")
@@ -34,18 +36,22 @@ func set_command(text: String) -> void:
 		else "[color=#333]>  [/color]"
 		)
 
-func play_with_text(text):
-	if !text:
-		return
+func play_with_text(text, flags):
+	print(flags)
 	$NarrativeBox/Label.set_text(text)
-	$NarrativeBox/AnimationPlayer.play(slide_in)
-	displayed = true
+	if flags & EventDisplayText.AnimationTransitions.ENTER:
+		print("In Enter")
+		$NarrativeBox/AnimationPlayer.play(slide_in)
+		displayed = true
+	yield(self, "input_given")
+	if flags & EventDisplayText.AnimationTransitions.EXIT:
+		print("In Exit")
+		$NarrativeBox/AnimationPlayer.play_backwards(slide_in)
+		displayed = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") && displayed:
-		$NarrativeBox/AnimationPlayer.play("RESET")
-		displayed = false
-		EventManager.selected_object = null
+	if event.is_action_pressed("interact"):
+		emit_signal("input_given")
 
 func _on_mouse_entered(object: InteractiveObject):
 	set_command(object.get_hover_text())

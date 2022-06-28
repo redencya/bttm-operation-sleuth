@@ -1,0 +1,81 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://core/EventSetCollide.gd" type="Script" id=1]
+[ext_resource path="res://core/EventDisplayText.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=34]
+script = ExtResource( 2 )
+flags = 7
+transitions = 3
+text = "This is your mother's TACKY HEART SHAPED RUG. It really ties the hall together."
+
+[sub_resource type="Resource" id=35]
+script = ExtResource( 2 )
+flags = 7
+transitions = 3
+text = "You take a closer look at the rug, perhaps looking for a pattern or a clue embedded in it. You find absolutely nothing, tough luck."
+
+[sub_resource type="Resource" id=36]
+script = ExtResource( 1 )
+flags = 0
+type = 0
+absolute_subject_path = "TackyRug"
+value = false
+
+[sub_resource type="Resource" id=37]
+script = ExtResource( 2 )
+flags = 3
+transitions = 3
+text = "The odds of this rug being useful in your current endeavor are slim to none."
+
+[sub_resource type="GDScript" id=38]
+script/source = "extends Resource
+class_name EventSheet
+
+signal act_complete
+signal auth_complete
+
+enum EventTypes { 
+	SET_STATE, 
+	SET_COLLIDE, 
+	SET_ITEM,
+	DISPLAY_TEXT, 
+	DISPLAY_ANIMATION,
+	}
+
+const ONE_SHOT = Event.EventFlags.ONE_SHOT
+const CHAIN_BREAK = Event.EventFlags.CHAIN_BREAK
+const AWAIT_INPUT = Event.EventFlags.AWAIT_INPUT
+
+export (EventTypes) var new_event_type
+export (bool) var add_new_event
+export (Array, Resource) var events
+
+func play_events():
+	var i = 0
+	while i < events.size():
+		var flags = events[i].flags 
+		events[i].exec()
+		if flags & AWAIT_INPUT:
+			yield(InterfaceManager, \"input_given\")
+
+		if ((flags & CHAIN_BREAK ) >> 1 ) & (flags & ONE_SHOT):
+			print(\"CBOS \", flags)
+			events.remove(i)
+			i -= 1
+			break
+		if flags & CHAIN_BREAK:
+			print(\"CB\")
+			break
+		if flags & ONE_SHOT:
+			print(\"OS\")
+			events.remove(i)
+			i -= 1
+		i += 1
+"
+
+[resource]
+script = SubResource( 38 )
+new_event_type = 3
+add_new_event = false
+events = [ SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ]

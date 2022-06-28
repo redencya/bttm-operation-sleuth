@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Assets/rail.png" type="Texture" id=1]
 [ext_resource path="res://Assets/hall.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
 [ext_resource path="res://addons/hivemake/Perspective2D.gd" type="Script" id=8]
 [ext_resource path="res://Objects/Level.gd" type="Script" id=9]
+[ext_resource path="res://item.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 150.959, -8.11038, 320.543, 124.697, 323.484, 190.594, 212.716, 189.58, 121.552, 51.7036, -158.801, -6.08279, -174.486, 50.6898, -317.603, 122.669, -313.682, 189.58, -316.622, 189.58 )
@@ -931,6 +932,11 @@ item_data_stateful = {
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Interactives/PlushBear"]
 position = Vector2( 20, -222 )
 polygon = PoolVector2Array( 159, 346, 152, 343, 144, 353, 147, 360, 146, 377, 143, 382, 135, 388, 135, 396, 126, 422, 129, 431, 142, 431, 148, 424, 149, 432, 161, 435, 169, 431, 170, 417, 183, 409, 184, 403, 195, 402, 199, 394, 190, 385, 184, 380, 188, 369, 187, 364, 193, 358, 192, 350, 186, 345, 179, 349, 169, 343 )
+
+[node name="Area2D" parent="Interactives/PlushBear" instance=ExtResource( 10 )]
+position = Vector2( -100, 174 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactives/PlushBear/Area2D"]
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 296, 293 )

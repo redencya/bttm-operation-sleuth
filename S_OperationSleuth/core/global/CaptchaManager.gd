@@ -6,16 +6,15 @@ signal request_successful
 signal request_failed
 
 var cards_size_limit : int = 4
-var cards := []
+var cards = preload("res://Objects/Sylladex.tres")
 var current_card
 
 # Called whenever an attempt is made to CAPTCHALOGUE a card.
-func _captchalogue(card : ItemData):
+func _captchalogue(card):
 	# fails if the card would overflow the limit.
-	if cards.size()+1 > cards_size_limit: return
-	cards.append(card)
-	print(cards)
-	emit_signal("card_added")
+	if cards.items.size() > cards_size_limit: return
+	cards.items.append(card)
+	cards.emit_changed()
 
 # Called whenever an attempt is made to EJECT a card.
 func _eject(card):
@@ -27,3 +26,8 @@ func _request_captcha_data(card):
 	# code here
 	emit_signal("request_successful")
 	# or emit_signal("request_failed")
+
+
+# TODO: Make a system for different Input modes.
+# Make it so that the system can be opted out of when 
+# The player clicks on something that's non-interactable and after an interaction.

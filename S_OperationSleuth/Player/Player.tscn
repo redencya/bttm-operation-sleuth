@@ -1,7 +1,11 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Assets/FranWalk.png" type="Texture" id=1]
-[ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://core/res/PerspectiveSprite.gd" type="Script" id=2]
+[ext_resource path="res://Player/Player.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 46, 14 )
 
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "IdleFront_Left"
@@ -331,7 +335,14 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[node name="Sprite" type="Sprite"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 4 )
+shape = SubResource( 24 )
+
+[node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 1, -1 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -100 )
@@ -339,7 +350,7 @@ hframes = 4
 vframes = 2
 script = ExtResource( 2 )
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource( 1 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
@@ -347,7 +358,7 @@ parameters/playback = SubResource( 2 )
 parameters/Idle/blend_position = Vector2( 0, 0 )
 parameters/Walk/blend_position = Vector2( -0.376623, -0.37931 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/IdleBack_Left = SubResource( 14 )
 anims/IdleBack_Right = SubResource( 15 )
 anims/IdleFront_Left = SubResource( 13 )

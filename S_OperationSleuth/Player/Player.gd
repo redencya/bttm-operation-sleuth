@@ -1,5 +1,4 @@
-tool
-extends PerspectiveSprite
+extends KinematicBody2D
 class_name Player
 
 signal navigation_finished
@@ -8,7 +7,7 @@ export (NodePath) var nav_2d_path
 export (float) var path_offset 
 
 var velocity := Vector2.ZERO
-var move_speed : float = 150.0
+export (float) var move_speed
 var path = PoolVector2Array()
 var direction : Vector2
 var navigating := false
@@ -19,12 +18,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if navigating:
 		move_along_path(move_speed * delta)
-	._process(delta)
 	animate_stuff(direction)
+	$CollisionShape2D.scale = $Sprite.scale
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		$AnimationTree.get("parameters/playback").travel("Walk")
+	if event.is_action_pressed("interact"):
+		$Sprite/AnimationTree.get("parameters/playback").travel("Walk")
 		create_path(event.position + Vector2(0, path_offset))
 		navigating = true
 
@@ -49,8 +48,11 @@ func move_along_path(distance: float) -> void:
 		path.remove(0)
 		if path.size() <= 0:
 			emit_signal("navigation_finished")
-			$AnimationTree.get("parameters/playback").travel("Idle")
+			$Sprite/AnimationTree.get("parameters/playback").travel("Idle")
 
 func animate_stuff(new_position : Vector2):
-	$AnimationTree.set("parameters/" + $AnimationTree.get("parameters/playback").get_current_node() + "/blend_position", new_position)
+	$Sprite/AnimationTree.set("parameters/" + $Sprite/AnimationTree.get("parameters/playback").get_current_node() + "/blend_position", new_position)
 
+func set_elevation(new_elevation: float):
+	$Sprite.elevation = new_elevation
+	print(new_elevation)

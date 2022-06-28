@@ -17,18 +17,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int, object
 	if event.is_action_pressed("interact"):
 		selected_object = object
 
-func _on_navigation_finished():
-	if !selected_object:
-		return
-	
-	match selected_object.get_hover_cursor():
-		ItemData.InteractionMode.EXAMINE:
-			InterfaceManager.play_with_text(selected_object.get_dialogue(0))
-		ItemData.InteractionMode.ENTER:
-			if !("exits_to" in selected_object.get_bonus_values().keys()): return
-			LevelManager.switch_to(selected_object.get_bonus_values()["exits_to"])
-		ItemData.InteractionMode.CAPTCHA:
-			CaptchaManager._captchalogue(selected_object._pick_dataset(""))
 
 func clear_persistent():
 	pass

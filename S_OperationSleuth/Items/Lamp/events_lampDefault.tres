@@ -1,0 +1,44 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://core/EventDisplayText.gd" type="Script" id=1]
+[ext_resource path="res://core/EventSetCollide.gd" type="Script" id=2]
+[ext_resource path="res://core/EventSheet.gd" type="Script" id=3]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+flags = 3
+transitions = 1
+text = "This is the hall LAMP."
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 1 )
+flags = 7
+transitions = 2
+text = "When it is on, it emits light. When it is off, it does not."
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 1 )
+flags = 7
+transitions = 3
+text = "Sometimes you like to just stand here and REMEMBER how a LAMP works."
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 2 )
+flags = 0
+value = false
+property_name = "input_pickable"
+target = NodePath("../..")
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 1 )
+flags = 7
+transitions = 3
+text = "Okay, let's be real here for a second.
+
+You will NOT be solving any PUZZLES with this LAMP. Quit trying."
+
+[resource]
+script = ExtResource( 3 )
+new_event_type = 1
+add_new_event = false
+events = [ SubResource( 1 ), SubResource( 3 ), SubResource( 2 ), SubResource( 6 ), SubResource( 5 ) ]
