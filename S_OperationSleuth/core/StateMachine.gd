@@ -30,10 +30,10 @@ func get_state() -> String:
 	return current_state.name
 
 func _on_clicked():
-	current_state._clicked()
+	current_state._clicked(CaptchaManager.current_card)
 
 func _on_hover():
-	current_state._hovered()
+	current_state._hovered(CaptchaManager.current_card)
 
 func _on_item_used(item: Item):
 	current_state._item_used(item)

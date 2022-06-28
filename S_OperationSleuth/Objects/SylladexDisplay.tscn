@@ -59,25 +59,21 @@ margin_left = 221.0
 margin_top = 6.0
 margin_right = 266.0
 margin_bottom = 69.0
-rect_scale = Vector2( 1, 1 )
 
 [node name="Card2" parent="CardContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 275.0
 margin_top = 6.0
 margin_right = 320.0
 margin_bottom = 69.0
-rect_scale = Vector2( 1, 1 )
 
 [node name="Card3" parent="CardContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 329.0
 margin_top = 6.0
 margin_right = 374.0
 margin_bottom = 69.0
-rect_scale = Vector2( 1, 1 )
 
 [node name="Card4" parent="CardContainer/HBoxContainer" instance=ExtResource( 3 )]
 margin_left = 383.0
 margin_top = 6.0
 margin_right = 428.0
 margin_bottom = 69.0
-rect_scale = Vector2( 1, 1 )

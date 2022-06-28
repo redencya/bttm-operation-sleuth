@@ -11,10 +11,10 @@ shader = ExtResource( 2 )
 material = SubResource( 2 )
 margin_right = 40.0
 margin_bottom = 40.0
-rect_scale = Vector2( 1, 1.00457 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource( 1 )
+stretch_mode = 1
 script = ExtResource( 3 )
 
 [node name="Item" type="TextureRect" parent="."]

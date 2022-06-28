@@ -27,7 +27,7 @@ func _enter():
 			event.connect("change_property", self, "_change_property", [], CONNECT_REFERENCE_COUNTED)
 	enter_logic.play_events()
 	
-func _clicked(item: Item = null):
+func _clicked(item):
 	if !item: 
 		for event in clicked.events:
 			if event is EventSetState:
@@ -43,8 +43,9 @@ func _change_property(target: NodePath, property: String, value: bool):
 	var node = get_node(target)
 	node.set(property, value)
 	
-func _hovered():
-	InterfaceManager.set_command("%s %s." % [hover_prompt, item_name])
+func _hovered(item):
+	if !item: 
+		InterfaceManager.set_command("%s %s." % [hover_prompt, item_name])
 	
 func _item_used(item: Item):
 	for action in item_interactions:

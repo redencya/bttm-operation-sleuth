@@ -9,6 +9,7 @@ func _ready() -> void:
 	connect("input_event", self, "_request_click_action")
 	
 func _clear_hover_action():
+	if CaptchaManager.current_card: return
 	InterfaceManager.set_command("")
 	
 func _request_click_action(viewport: Object, event: InputEvent, shape_idx: int):

@@ -16,6 +16,10 @@ func _captchalogue(card):
 	cards.items.append(card)
 	cards.emit_changed()
 
+func _input(event: InputEvent) -> void:
+	if current_card && event.is_action_pressed("interact"):
+		current_card = null
+
 # Called whenever an attempt is made to EJECT a card.
 func _eject(card):
 	# code here
